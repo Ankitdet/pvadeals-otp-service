@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import otpRoutes from "./routes/otp";
 import { attachRequestId, loggerMiddleware } from "./middleware/logger";
+import router from "./routes";
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(loggerMiddleware);
 app.use(attachRequestId);
 
-app.use("/api", otpRoutes);
+app.use("/api", router);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
